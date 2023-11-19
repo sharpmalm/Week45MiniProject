@@ -4,7 +4,7 @@
     {
         Console.WriteLine("My Products");
         List<Product> prod = new List<Product>();
-        
+                
         while (true)
         {
             Console.WriteLine("Enter product category and press enter.");
@@ -21,14 +21,22 @@
             
             prod.Add(new Product(category, name, price));
         }
+        List<Product> sortedList = prod.OrderBy(prod => prod.Price).ToList();
         Console.WriteLine("");
-        foreach (Product prods in prod)
+        Console.WriteLine("Category".PadRight(20) + "Name".PadRight(20) + "Price");
+        
+        //foreach (Product prods in prod)
+        foreach (Product product in sortedList)
         {
-            
-            Console.WriteLine(prods.Category + " " + prods.Name + " " + prods.Price);
-            
+
+            //Console.WriteLine(prods.Category.PadRight(20) + prods.Name.PadRight(20) + prods.Price);
+            Console.WriteLine(product.Category.PadRight(20) + product.Name.PadRight(20) + product.Price);
         }
+        
         Console.WriteLine("");
+        int totalPrice = prod.Sum(prod => prod.Price);
+        Console.WriteLine("The total price for your products is:   " + totalPrice);
+        Console.WriteLine();
         Console.WriteLine("----------------------------");
     }
 }

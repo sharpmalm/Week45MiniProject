@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 class Program
 {
     static void Main(string[] args)
@@ -14,12 +16,31 @@ class Program
                 case "1":
                     Console.WriteLine("Enter product category and press enter.");
                     string category = Console.ReadLine();
+                    if (category.Equals(""))
+                    {
+                        Console.WriteLine("You must enter a product category. Enter a category and press enter");
+                        break;
+                    }
                     Console.WriteLine("Enter product name and press enter.");
                     string name = Console.ReadLine();
+                    if (name.Equals(""))
+                    {
+                        Console.WriteLine("You must enter a product name. Enter a name and press enter");
+                        break;
+                    }
                     Console.WriteLine("Enter price and press enter.");
-                    int price = Convert.ToInt32(Console.ReadLine());
-                    prod.Add(new Product(category, name, price));
-                    break;
+                    string wrongInput = Console.ReadLine();
+                    int price;
+                    if (int.TryParse(input = wrongInput, out price))
+                    {
+                        prod.Add(new Product(category, name, price));
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input. Please enter a valid integer.");
+                        break;
+                    }
                 case "2":
                     List<Product> sortedList = prod.OrderBy(prod => prod.Price).ToList();
                     Console.WriteLine("");

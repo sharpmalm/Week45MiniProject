@@ -38,11 +38,12 @@ class Program
                     {
                         Console.WriteLine("");
                         Console.WriteLine("Category".PadRight(20) + "Name".PadRight(20) + "Price");
-
+                        Console.ForegroundColor = ConsoleColor.Green;
 
                         foreach (Product product in searchResults)
                         { Console.WriteLine(product.Category.PadRight(20) + product.Name.PadRight(20) + product.Price); }
                         Console.WriteLine("");
+                        Console.ResetColor();
                     }
                     else
                     {
